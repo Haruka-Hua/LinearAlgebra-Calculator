@@ -2,11 +2,33 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-void row_reduce(double **map,int i,int j,int n){
-    double multiple;
-    if (map[i][i]==0) multiple = 0;
-    //todo: for determinants that need row exchange
-    else multiple  = map[j][i]/map[i][i];
+int Exchangeable_Row(double **map, int i, int n) {
+    for (int j=i+1;j<n;j++) {
+       if (map[j][i]!=0) return j;
+    }
+    return -1;
+}
+
+void Row_Exchange(double **map, int i, int j) {
+    double *temp = map[i];
+    map[i] = map[j];
+    map[j] = temp;
+}
+
+double Get_Multiple(double **map, int i, int j, int n) {
+    if (map[i][i]==0) {
+        int exchangeable_row = Exchangeable_Row(map,i,n);
+        if (exchangeable_row == -1) {
+            return 0;
+        }
+        else {
+            Row_Exchange(map,i,exchangeable_row);
+        }
+    }
+    return map[j][i]/map[i][i];
+}
+void Row_Reduce(double **map,int i,int j,int n){
+    double multiple = Get_Multiple(map,i,j,n);
     for(int k=i;k<n;k++) {
         map[j][k] -= map[i][k] * multiple;
     }
@@ -15,7 +37,7 @@ void row_reduce(double **map,int i,int j,int n){
 void Elimination(double **map, int n) {
     for(int i=0;i<n;i++) {
         for(int j=i+1;j<n;j++) {
-            row_reduce(map,i,j,n);
+            Row_Reduce(map,i,j,n);
         }
     }
 }
@@ -35,9 +57,9 @@ double Determinant_Calculator(double **map, int n) {
 
 int main() {
     int n;
-    printf("Please enter the order of the matrix: ");
+    printf("Please enter the order of the matrix:\n");
     scanf("%d",&n);
-    printf("Please enter the matrix: ");
+    printf("Please enter the matrix:\n");
     double **map = (double **)malloc(sizeof(double*)*n);
     for(int i=0;i<n;i++) {
         map[i] = (double *)malloc(sizeof(double)*n);
