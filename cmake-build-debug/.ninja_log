@@ -1,0 +1,23 @@
+# ninja log v6
+2	82	7636302696888156	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+83	173	7636302697696181	Determinants.exe	3edb1c1b1ac2e7fc
+3	83	7636310658230183	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+84	187	7636310659038445	Determinants.exe	3edb1c1b1ac2e7fc
+3	78	7636311817126924	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+78	166	7636311817884320	Determinants.exe	3edb1c1b1ac2e7fc
+3	89	7636318824621524	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+90	183	7636318825492000	Determinants.exe	3edb1c1b1ac2e7fc
+3	94	7636408132498111	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+95	205	7636408133411803	Determinants.exe	3edb1c1b1ac2e7fc
+3	78	7636408815112066	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+79	168	7636408815861652	Determinants.exe	3edb1c1b1ac2e7fc
+7	125	7636443538965597	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+125	255	7636443540147628	Determinants.exe	3edb1c1b1ac2e7fc
+3	75	7636443845610962	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+75	162	7636443846326655	Determinants.exe	3edb1c1b1ac2e7fc
+3	74	7636444429231403	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+75	164	7636444429946740	Determinants.exe	3edb1c1b1ac2e7fc
+3	71	7636444836890431	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+72	158	7636444837570289	Determinants.exe	3edb1c1b1ac2e7fc
+3	79	7636445082856369	CMakeFiles/Determinants.dir/Determinants.c.obj	9b711313eb0d13d7
+79	169	7636445083620516	Determinants.exe	3edb1c1b1ac2e7fc
