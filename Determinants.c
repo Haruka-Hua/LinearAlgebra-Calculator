@@ -60,20 +60,20 @@ int main() {
     printf("Please enter the order of the matrix:\n");
     scanf("%d",&n);
     printf("Please enter the matrix:\n");
-    double **matirx = (double **)malloc(sizeof(double*)*n);
+    double **matrix = (double **)malloc(sizeof(double*)*n);
     for(int i=0;i<n;i++) {
-        matirx[i] = (double *)malloc(sizeof(double)*n);
+        matrix[i] = (double *)malloc(sizeof(double)*n);
     }
     for(int i=0;i<n;i++) {
         for (int j=0;j<n;j++) {
-            scanf("%lf",&matirx[i][j]);
+            scanf("%lf",&matrix[i][j]);
         }
     }
-    double determinant_val = Determinant_Calculator(matirx,n);
+    double determinant_val = Determinant_Calculator(matrix,n);
     printf("The determinant of the matrix is: %lf",determinant_val);
     for(int i=0;i<n;i++) {
-       free(matirx[i]);
+       free(matrix[i]);
     }
-    free(matirx);
+    free(matrix);
     return 0;
 }
