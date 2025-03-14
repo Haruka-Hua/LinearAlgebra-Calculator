@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 int Exchangeable_Row(double **matrix, int i, int n) {
     for (int j=i+1;j<n;j++) {
@@ -70,10 +69,13 @@ int main() {
         }
     }
     double determinant_val = Determinant_Calculator(matrix,n);
-    printf("The determinant of the matrix is: %lf",determinant_val);
+    printf("The determinant of the matrix is: %lf \n",determinant_val);
     for(int i=0;i<n;i++) {
        free(matrix[i]);
     }
     free(matrix);
+    printf("Enter anything to exit.\n");
+    getchar();
+    getchar();
     return 0;
 }
