@@ -2,57 +2,57 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-int Exchangeable_Row(double **map, int i, int n) {
+int Exchangeable_Row(double **matrix, int i, int n) {
     for (int j=i+1;j<n;j++) {
-       if (map[j][i]!=0) return j;
+       if (matrix[j][i]!=0) return j;
     }
     return -1;
 }
 
-void Row_Exchange(double **map, int i, int j) {
-    double *temp = map[i];
-    map[i] = map[j];
-    map[j] = temp;
+void Row_Exchange(double **matrix, int i, int j) {
+    double *temp = matrix[i];
+    matrix[i] = matrix[j];
+    matrix[j] = temp;
 }
 
-double Get_Multiple(double **map, int i, int j, int n) {
-    if (map[i][i]==0) {
-        int exchangeable_row = Exchangeable_Row(map,i,n);
+double Get_Multiple(double **matrix, int i, int j, int n) {
+    if (matrix[i][i]==0) {
+        int exchangeable_row = Exchangeable_Row(matrix,i,n);
         if (exchangeable_row == -1) {
             return 0;
         }
         else {
-            Row_Exchange(map,i,exchangeable_row);
+            Row_Exchange(matrix,i,exchangeable_row);
         }
     }
-    return map[j][i]/map[i][i];
+    return matrix[j][i]/matrix[i][i];
 }
-void Row_Reduce(double **map,int i,int j,int n){
-    double multiple = Get_Multiple(map,i,j,n);
+void Row_Reduce(double **matrix,int i,int j,int n){
+    double multiple = Get_Multiple(matrix,i,j,n);
     for(int k=i;k<n;k++) {
-        map[j][k] -= map[i][k] * multiple;
+        matrix[j][k] -= matrix[i][k] * multiple;
     }
 }
 
-void Elimination(double **map, int n) {
+void Elimination(double **matrix, int n) {
     for(int i=0;i<n;i++) {
         for(int j=i+1;j<n;j++) {
-            Row_Reduce(map,i,j,n);
+            Row_Reduce(matrix,i,j,n);
         }
     }
 }
 
-double Multi_Diag(double **map, int n) {
+double Multi_Diag(double **matrix, int n) {
     double ans = 1;
     for (int i=0;i<n;i++) {
-        ans *= map[i][i];
+        ans *= matrix[i][i];
     }
     return ans;
 }
 
-double Determinant_Calculator(double **map, int n) {
-    Elimination(map,n);
-    return Multi_Diag(map,n);
+double Determinant_Calculator(double **matrix, int n) {
+    Elimination(matrix,n);
+    return Multi_Diag(matrix,n);
 }
 
 int main() {
@@ -60,20 +60,20 @@ int main() {
     printf("Please enter the order of the matrix:\n");
     scanf("%d",&n);
     printf("Please enter the matrix:\n");
-    double **map = (double **)malloc(sizeof(double*)*n);
+    double **matirx = (double **)malloc(sizeof(double*)*n);
     for(int i=0;i<n;i++) {
-        map[i] = (double *)malloc(sizeof(double)*n);
+        matirx[i] = (double *)malloc(sizeof(double)*n);
     }
     for(int i=0;i<n;i++) {
         for (int j=0;j<n;j++) {
-            scanf("%lf",&map[i][j]);
+            scanf("%lf",&matirx[i][j]);
         }
     }
-    double determinant_val = Determinant_Calculator(map,n);
+    double determinant_val = Determinant_Calculator(matirx,n);
     printf("The determinant of the matrix is: %lf",determinant_val);
     for(int i=0;i<n;i++) {
-       free(map[i]);
+       free(matirx[i]);
     }
-    free(map);
+    free(matirx);
     return 0;
 }
