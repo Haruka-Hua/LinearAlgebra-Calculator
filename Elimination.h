@@ -4,6 +4,7 @@
 
 #ifndef ELIMINATION_H
 #define ELIMINATION_H
+#include <stdbool.h>
 
 #endif //ELIMINATION_H
 
@@ -33,21 +34,41 @@ double Get_Multiple(double **matrix, int i, int j, int n) {
     return matrix[j][i]/matrix[i][i];
 }
 
-void Row_Reduce(double **matrix,int i,int j,int n){
+void Row_Reduce(double **matrix,int i,int j,int n, bool augmentation){
     double multiple = Get_Multiple(matrix,i,j,n);
-    for(int k=i;k<n*2;k++) {
+    int row_length = augmentation ? n*2 : n;
+    for(int k=i;k<row_length;k++) {
         matrix[j][k] -= matrix[i][k] * multiple;
     }
 }
 
-void Elimination(double **matrix, int n) {
+void Elimination(double **matrix, int n, bool augmentation) {
     for(int i=0;i<n;i++) {
         for(int j=i+1;j<n;j++) {
-            Row_Reduce(matrix,i,j,n);
+            Row_Reduce(matrix,i,j,n,augmentation);
         }
     }
 }
 
-// void BackSubstitution() {
-//
-// }
+void Pivot_Reduce(double **matrix, int i, int j, int n, bool augmentation) {
+    double multiple = matrix[j][i]/matrix[i][i];
+    int row_length = augmentation ? n*2 : n;
+    for (int k=i;k<row_length;k++) {
+        matrix[j][k] -= matrix[i][k] * multiple;
+    }
+}
+
+void BackSubstitution(double **matrix, int n, bool augmentation) {
+    for (int i=n-1; i>0; i--) {
+        for (int j=i-1; j>=0; j--) {
+            Pivot_Reduce(matrix,i,j,n,augmentation);
+        }
+    }
+    int row_length = augmentation ? n*2 : n;
+    for (int i=0;i<n;i++) {
+        double divider = matrix[i][i];
+        for (int j=i;j<row_length;j++) {
+            matrix[i][j] /= divider;
+        }
+    }
+}

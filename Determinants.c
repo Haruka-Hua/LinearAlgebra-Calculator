@@ -11,7 +11,7 @@ double Multi_Diag(double **matrix, int n) {
 }
 
 double Determinant_Calculator(double **matrix, int n) {
-    Elimination(matrix,n);
+    Elimination(matrix,n,false);
     return Multi_Diag(matrix,n);
 }
 
