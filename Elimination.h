@@ -4,9 +4,15 @@
 
 #ifndef ELIMINATION_H
 #define ELIMINATION_H
-#include <stdbool.h>
-
 #endif //ELIMINATION_H
+
+double Multi_Diag(double **matrix, int n) {
+    double ans = 1;
+    for (int i=0;i<n;i++) {
+        ans *= matrix[i][i];
+    }
+    return ans;
+}
 
 int Exchangeable_Row(double **matrix, int i, int n) {
     for (int j=i+1;j<n;j++) {
@@ -34,15 +40,15 @@ double Get_Multiple(double **matrix, int i, int j, int n) {
     return matrix[j][i]/matrix[i][i];
 }
 
-void Row_Reduce(double **matrix,int i,int j,int n, bool augmentation){
+void Row_Reduce(double **matrix,int i,int j,int n, int augmentation){
     double multiple = Get_Multiple(matrix,i,j,n);
-    int row_length = augmentation ? n*2 : n;
+    int row_length = n + augmentation;
     for(int k=i;k<row_length;k++) {
         matrix[j][k] -= matrix[i][k] * multiple;
     }
 }
 
-void Elimination(double **matrix, int n, bool augmentation) {
+void Elimination(double **matrix, int n, int augmentation) {
     for(int i=0;i<n;i++) {
         for(int j=i+1;j<n;j++) {
             Row_Reduce(matrix,i,j,n,augmentation);
@@ -50,21 +56,21 @@ void Elimination(double **matrix, int n, bool augmentation) {
     }
 }
 
-void Pivot_Reduce(double **matrix, int i, int j, int n, bool augmentation) {
+void Pivot_Reduce(double **matrix, int i, int j, int n, int augmentation) {
     double multiple = matrix[j][i]/matrix[i][i];
-    int row_length = augmentation ? n*2 : n;
+    int row_length = n + augmentation;
     for (int k=i;k<row_length;k++) {
         matrix[j][k] -= matrix[i][k] * multiple;
     }
 }
 
-void BackSubstitution(double **matrix, int n, bool augmentation) {
+void BackSubstitution(double **matrix, int n, int augmentation) {
     for (int i=n-1; i>0; i--) {
         for (int j=i-1; j>=0; j--) {
             Pivot_Reduce(matrix,i,j,n,augmentation);
         }
     }
-    int row_length = augmentation ? n*2 : n;
+    int row_length = n + augmentation;
     for (int i=0;i<n;i++) {
         double divider = matrix[i][i];
         for (int j=i;j<row_length;j++) {

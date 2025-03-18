@@ -139,6 +139,39 @@ build MatrixInverse.exe: C_EXECUTABLE_LINKER__MatrixInverse_Debug CMakeFiles/Mat
   TARGET_IMPLIB = libMatrixInverse.dll.a
   TARGET_PDB = MatrixInverse.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target Equations
+
+
+#############################################
+# Order-only phony target for Equations
+
+build cmake_object_order_depends_target_Equations: phony || .
+
+build CMakeFiles/Equations.dir/Equations.c.obj: C_COMPILER__Equations_unscanned_Debug D$:/Programming/CLionProjects/LinearAlgebra/Equations.c || cmake_object_order_depends_target_Equations
+  DEP_FILE = CMakeFiles\Equations.dir\Equations.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Equations.dir
+  OBJECT_FILE_DIR = CMakeFiles\Equations.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target Equations
+
+
+#############################################
+# Link the executable Equations.exe
+
+build Equations.exe: C_EXECUTABLE_LINKER__Equations_Debug CMakeFiles/Equations.dir/Equations.c.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\Equations.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = Equations.exe
+  TARGET_IMPLIB = libEquations.dll.a
+  TARGET_PDB = Equations.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -167,6 +200,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build Determinants: phony Determinants.exe
 
+build Equations: phony Equations.exe
+
 build Matrices: phony Matrices.exe
 
 build MatrixInverse: phony MatrixInverse.exe
@@ -179,7 +214,7 @@ build MatrixInverse: phony MatrixInverse.exe
 #############################################
 # Folder: D:/Programming/CLionProjects/LinearAlgebra/cmake-build-debug
 
-build all: phony Determinants.exe Matrices.exe MatrixInverse.exe
+build all: phony Determinants.exe Matrices.exe MatrixInverse.exe Equations.exe
 
 # =============================================================================
 # Built-in targets

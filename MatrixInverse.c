@@ -7,14 +7,6 @@
 #include<stdlib.h>
 #include "Elimination.h"
 
-double Multi_Diag(double **matrix, int n) {
-    double ans = 1;
-    for (int i=0;i<n;i++) {
-        ans *= matrix[i][i];
-    }
-    return ans;
-}
-
  void Set_Identity(double **matrix, int n) {
      for (int i=0;i<n;i++) {
          for (int j=0;j<n;j++) {
@@ -25,12 +17,12 @@ double Multi_Diag(double **matrix, int n) {
 
 
 void Matrix_Reverse(double **matrix, int n) {
-     Elimination(matrix,n,true);
+     Elimination(matrix,n,n);
      if (Multi_Diag(matrix,n)==0) {
          printf("Singular matrix.\n");
          return;
      }
-     BackSubstitution(matrix,n,true);
+     BackSubstitution(matrix,n,n);
      printf("Invertible matrix. The inverse of the matrix is: \n");
      for (int i=0;i<n;i++) {
          for (int j=0;j<n;j++) {

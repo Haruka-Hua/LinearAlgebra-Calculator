@@ -2,16 +2,8 @@
 #include <stdlib.h>
 #include "Elimination.h"
 
-double Multi_Diag(double **matrix, int n) {
-    double ans = 1;
-    for (int i=0;i<n;i++) {
-        ans *= matrix[i][i];
-    }
-    return ans;
-}
-
 double Determinant_Calculator(double **matrix, int n) {
-    Elimination(matrix,n,false);
+    Elimination(matrix,n,0);
     return Multi_Diag(matrix,n);
 }
 
