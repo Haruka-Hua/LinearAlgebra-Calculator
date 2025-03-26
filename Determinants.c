@@ -3,8 +3,8 @@
 #include "Elimination.h"
 
 double Determinant_Calculator(double **matrix, int n) {
-    Elimination(matrix,n,0);
-    return Multi_Diag(matrix,n);
+    int sgn = Elimination(matrix,n,0);
+    return sgn * Multi_Diag(matrix,n);
 }
 
 int main() {

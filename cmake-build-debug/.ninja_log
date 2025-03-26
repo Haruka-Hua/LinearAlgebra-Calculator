@@ -17,3 +17,9 @@
 92	188	7639337819969040	Determinants.exe	3edb1c1b1ac2e7fc
 12	312	7639678128477439	CMakeFiles/Equations.dir/Equations.c.obj	747db32bdc13b138
 313	547	7639678131489509	Equations.exe	b966f2a2986ee2ae
+3	5809	7647105933299850	CMakeFiles/Determinants.dir/Determinants.c.obj	4415a5f0451354ce
+5809	10074	7647105991360709	Determinants.exe	3edb1c1b1ac2e7fc
+4	92	7647112987343661	CMakeFiles/Equations.dir/Equations.c.obj	747db32bdc13b138
+92	190	7647112988235102	Equations.exe	b966f2a2986ee2ae
+3	89	7647117490660715	CMakeFiles/MatrixInverse.dir/MatrixInverse.c.obj	c21f7f2c156d3c6
+90	186	7647117491531029	MatrixInverse.exe	803a3eca72779e87
