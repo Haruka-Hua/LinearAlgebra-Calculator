@@ -3,7 +3,7 @@
 
 node *head = NULL;
 node *tail = NULL;
-char matrix_operator[10] = "";
+char matrix_operator[16] = "";
 
 int main() {
     Welcome();
@@ -23,13 +23,19 @@ int main() {
             Query(head,tail);
         }
         else if (strcmp(matrix_operator,"plus")==0) {
-            Plus(&head,&tail);
+            MultiPlus(&head,&tail,1,1);
+        }
+        else if (strcmp(matrix_operator,"minus")==0) {
+            MultiPlus(&head,&tail,1,-1);
         }
         else if (strcmp(matrix_operator,"mult")==0) {
             Mult(&head,&tail);
         }
         else if (strcmp(matrix_operator,"rename")==0) {
             Rename(head,tail);
+        }
+        else if (strcmp(matrix_operator,"memory")==0) {
+            MemQuery(head);
         }
         else {
             printf("Invalid operator! Try again!\n");

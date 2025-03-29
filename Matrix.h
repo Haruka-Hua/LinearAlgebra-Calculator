@@ -34,6 +34,7 @@ void CreateNode(int r, int c, double **matrix, const char *name, node **head, no
     }
     else {
         (*tail)->next = new_matrix;
+        *tail = new_matrix;
     }
 }
 void DelMatrix(const node *target) { //delete a matrix in a node;
@@ -65,5 +66,15 @@ void RemoveNode(node *target, node **head, node **tail) { //remove a node;
         target->prev->next = target->next;
         target->next->prev = target->prev;
         free(target);
+    }
+}
+void DelList(node *head) {
+    node *current = head;
+    node *temp;
+    while (current) {
+        DelMatrix(current);
+        temp = current;
+        current = current->next;
+        free(temp);
     }
 }
