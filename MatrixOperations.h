@@ -117,7 +117,7 @@ void Create(node **head, node **tail) {
     printf("\"%s\" created!\n",matrix_name);
 }
 
-void MultiPlus(node **head, node **tail, int multiplier1, int multiplier2) {
+void SuperPlus(node **head, node **tail, double multiplier1, double multiplier2) {
     char matrixA_name[32],matrixB_name[32];
     printf("first matrix:");
     scanf("%s",matrixA_name);
@@ -168,6 +168,84 @@ void MultiPlus(node **head, node **tail, int multiplier1, int multiplier2) {
             printf("%lf ",matrixC[i][j]);
         }
         printf("\n");
+    }
+}
+
+void MultPlus(node **head, node **tail) {
+    double multiplier1,multiplier2;
+    printf("multiplier of the first matrix:");
+    scanf("%lf",&multiplier1);
+    printf("multiplier of the second matrix:");
+    scanf("%lf",&multiplier2);
+    SuperPlus(head,tail,multiplier1,multiplier2);
+}
+
+void NumMult(node **head, node **tail) {
+    char matrix_name[32];
+    printf("Please enter the name of the matrix:\n");
+    scanf("%s",matrix_name);
+    const node *target = GetMatrix(matrix_name,*head,*tail);
+    if (target==NULL) {
+        printf("\"%s\" does not exist. Please define it first.\n",matrix_name);
+        return;
+    }
+    double multiplier;
+    printf("Please enter the multiplier:");
+    scanf("%lf",&multiplier);
+    printf("Cover the origin matrix or create a new matrix?(cover/new)\n");
+    char choice[16];
+    scanf("%s",choice);
+    double **matrix = target->matrix;
+    int r = target->r;
+    int c = target->c;
+    while (1) {
+        if (strcmp(choice,"cover")==0) {
+            //cover the matrix
+            for (int i=0;i<r;i++) {
+                for (int j=0;j<c;j++) {
+                    matrix[i][j] *= multiplier;
+                    printf("%lf ",matrix[i][j]);
+                }
+                printf("\n");
+            }
+            return;
+        }
+        else if (strcmp(choice,"new")==0){
+            //create a new matrix
+            char new_matrix_name[32];
+            printf("Name of the new matrix: ");
+            scanf("%s",new_matrix_name);
+            node *check = GetMatrix(new_matrix_name,*head,*tail);
+            while (check) {
+                printf("\"%s\" already exist. Try again with another name.\n",new_matrix_name);
+                scanf("%s",new_matrix_name);
+                check = GetMatrix(new_matrix_name,*head,*tail);
+            }
+            double **new_matrix = (double **) malloc(sizeof(double *) * r);
+            for (int i = 0; i < r; i++) {
+                new_matrix[i] = (double *) malloc(sizeof(double) * c);
+            }
+            for (int i = 0; i < r; i++) {
+                for (int j = 0; j < c; j++) {
+                    new_matrix[i][j] = matrix[i][j] * multiplier;
+                }
+            }
+            CreateNode(r, c, new_matrix, new_matrix_name, head, tail);
+            printf("The answer is:\n");
+            printf("%d by %d\n",r,c);
+            for (int i=0;i<r;i++) {
+                for (int j=0;j<c;j++) {
+                    printf("%lf ",new_matrix[i][j]);
+                }
+                printf("\n");
+            }
+            return;
+        }
+        else {
+            printf("Invalid choice! Try again!\n");
+            printf("Cover the origin matrix or create a new matrix?(cover/new)\n");
+            scanf("%s",choice);
+        }
     }
 }
 
@@ -231,13 +309,15 @@ void Mult(node **head, node **tail) {
 void Welcome() {
     printf("----------Instructions----------\n");
     printf("Welcome to my matrix Calculator!\n");
-    printf("You can choose from these operations:\ncreate / delete / query / plus / minus "
-           "/ mult / rename / memory / quit\n");
+    printf("You can choose from these operations:\ncreate / delete / query / plus / minus / "
+           "multplus / nummult / mult / rename / memory / quit\n");
     printf("create: create a new matrix.\n");
     printf("delete: delete a certain matrix from memory.\n");
     printf("query: get information of a certain matrix from memory.\n");
     printf("plus: add two matrices together and add the answer matrix to memory.\n");
     printf("minus: subtract the second matrix from the first matrix.\n");
+    printf("multplus: add multiples of two matrices.\n");
+    printf("nummult: multiply a matrix by a number.\n");
     printf("mult: multiply two matrices together and add the answer matrix to memory.\n");
     printf("rename: rename a certain matrix in memory.\n");
     printf("memory: show memory information.\n");

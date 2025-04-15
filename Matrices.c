@@ -23,10 +23,16 @@ int main() {
             Query(head,tail);
         }
         else if (strcmp(matrix_operator,"plus")==0) {
-            MultiPlus(&head,&tail,1,1);
+            SuperPlus(&head,&tail,1,1);
         }
         else if (strcmp(matrix_operator,"minus")==0) {
-            MultiPlus(&head,&tail,1,-1);
+            SuperPlus(&head,&tail,1,-1);
+        }
+        else if (strcmp(matrix_operator,"multplus")==0) {
+            MultPlus(&head,&tail);
+        }
+        else if (strcmp(matrix_operator,"nummult")==0) {
+            NumMult(&head,&tail);
         }
         else if (strcmp(matrix_operator,"mult")==0) {
             Mult(&head,&tail);

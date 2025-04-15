@@ -44,16 +44,18 @@
 1. 矩阵的存储、查询、调用等操作
 2. 矩阵的加减法和乘法操作
 
-操作符： `create / delete / query / plus / minus / mult / rename / memory / quit`
+操作符： `create / delete / query / plus / minus / multplus / nummult / mult / rename / memory / quit `
 1. `create`：创建一个矩阵，并且添加到存储。
 2. `delete`：删除一个现有的矩阵。
 3. `query`：查询存储中某个矩阵的信息。
 4. `plus`：从存储中选两个矩阵相加，并将答案添加到存储中。
 5. `minus`：从存储中选两个矩阵相减，并将答案添加到存储中。
-6. `mult`：从存储中选两个矩阵相乘，并将答案添加到存储中。
-7. `rename`：重命名存储中的某个矩阵。
-8. `memory`：查看存储信息。
-9. `quit`：退出程序。
+6. `multplus`：从存储中选两个矩阵倍加，并将答案添加到存储中。
+7. `nummult`：从存储中选择一个矩阵乘上一个数，可选择覆盖原有矩阵或新建矩阵。
+8. `mult`：从存储中选两个矩阵相乘，并将答案添加到存储中。
+9. `rename`：重命名存储中的某个矩阵。
+10. `memory`：查看存储信息。
+11. `quit`：退出程序。
 
 注意事项：
 1. 请先定义矩阵再进行计算。
